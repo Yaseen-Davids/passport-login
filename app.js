@@ -10,6 +10,16 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+app.use(require('express-session')({
+  secret: "secret",
+  cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // Remember to set this
+}));
+
 // Passport Config
 require('./config/passport')(passport);
 // Passport Middleware
