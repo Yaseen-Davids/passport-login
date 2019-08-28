@@ -33,17 +33,15 @@ module.exports = {
       return e;
     }
   },
-  CreateUser: function(person){
+  CreateUser: (person) => {
     try {
-      bcrypt.genSalt(10, function(err, salt){
+      bcrypt.genSalt(10, (err, salt) => {
         if (err){
-          console.log(err);
-          return;
+          return err;
         }
-        bcrypt.hash(person.password, salt, async function(err, hash){
+        bcrypt.hash(person.password, salt, async (err, hash) => {
           if (err){
-            console.log(err);
-            return;
+            return err;
           }
           try {
             await knex("Users").insert({
@@ -53,15 +51,13 @@ module.exports = {
             });
           }
           catch (e){
-            console.log(e);
-            return;
+            return e;
           }
         });
       })
     }
     catch (e) {
-      console.log(e);
-      return;
+      return e;
     }
   },
   DeleteUser: async (id) => {

@@ -2,15 +2,15 @@ const LocalStrategy = require('passport-local').Strategy;
 const { GetUserByUsername, UserById } = require("../repositories/users");
 const bcrypt = require('bcryptjs');
 
-module.exports = function (passport) {
-  passport.use(new LocalStrategy(async function (username, password, done) {
+module.exports = (passport) => {
+  passport.use(new LocalStrategy(async (username, password, done) => {
     const user = await GetUserByUsername(username);
 
     if (!user || user == undefined) {
       return done(null, false, { message: 'User does not exist' });
     }
 
-    bcrypt.compare(password, user.password, function (err, isMatch) {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) {
         return err;
       };
@@ -25,11 +25,11 @@ module.exports = function (passport) {
     });
   }));
 
-  passport.serializeUser(function (user, done) {
+  passport.serializeUser((user, done) => {
     done(null, user.id);
   });
   
-  passport.deserializeUser(async function (id, done) {
+  passport.deserializeUser(async (id, done) => {
     const user = await UserById(id);
     if (user) {
       done(null, user);

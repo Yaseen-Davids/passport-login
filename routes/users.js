@@ -4,19 +4,32 @@ const passport = require("passport");
 const { CreateUser, DeleteUser } = require("../repositories/users");
 
 router.get("/login", (req, res, next) => {
-  res.render("login");
+  try {
+    res.render("login");
+  }
+  catch (e){
+    return next(e);
+  }
 });
 
-router.get("/register", function (req, res, next) {
-  res.render("register");
+router.get("/register", (req, res, next) => {
+  try {
+    res.render("register");
+  } catch (e) {
+    return next(e);
+  }
 });
 
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.redirect('/users/login');
+router.get('/logout', (req, res, next) => {
+  try {
+    req.logout();
+    res.redirect('/users/login');
+  } catch (e) {
+    return next(e);
+  }
 });
 
-router.post("/register", async function (req, res, next) {
+router.post("/register", async (req, res, next) => {
   try {
     await CreateUser(req.body);
     res.redirect("/users/login");
@@ -26,7 +39,7 @@ router.post("/register", async function (req, res, next) {
   }
 });
 
-router.get("/delete/:id", async function (req, res, next) {
+router.get("/delete/:id", async (req, res, next) => {
   try {
     await DeleteUser(req.params.id);
     res.redirect("/admin");
@@ -36,7 +49,7 @@ router.get("/delete/:id", async function (req, res, next) {
   }
 })
 
-router.post("/login", function (req, res, next) {
+router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/users/login",

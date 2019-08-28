@@ -22,15 +22,19 @@
     </thead>
     <tbody>
       <% users.map((user) => { %>
-        <tr>
-          <td><%= user.username %></td>
-          <td><%= user.email %></td>
-          <td>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if (online_user.id == user.id) { %>
+            <button type="submit" disabled >Delete</button>
+          <% } else { %>
             <a href="/users/delete/<%= user.id %>">
               <button type="submit">Delete</button>
             </a>
-          </td>
-        </tr>
+          <% } %>
+        </td>
+      </tr>
       <% }) %>
     </tbody>
   </table>
