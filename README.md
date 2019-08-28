@@ -2,8 +2,10 @@ Make sure you have Postgresql installed and is running.
 <br>
 Change connection string in `knexfile.js` to your Postgresql logins.
 <br>
-Create database `UsersLogin` in Postgresql and run migrations (running seeds is not necessary).
+Create database `UsersLogin` (can be changed to whatever you want but then you will need to change `db` to point to your database in `knexfile.js`) in Postgresql and run migrations (running seeds is not necessary).
 <br>
+<br>
+Install dependencies:
 <br>
 `npm install`
 <br>
