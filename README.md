@@ -1,31 +1,37 @@
-<h1>Passport Login with Postgresql and Node.js</h1>
+# Passport Login with Postgresql and Node.js
 Make sure you have Postgresql installed and is running.
-<br>
+
 Change connection string in `knexfile.js` to your Postgresql logins.
-<br>
+
 Create database `UsersLogin` (can be changed to whatever you want but then you will need to change `db` to point to your database in `knexfile.js`) in Postgresql and run migrations (running seeds is not necessary).
-<br>
-<br>
-Install dependencies:
-<br>
-`npm install`
-<br>
-<br>
-Run migrations:
-<br>
-`knex migrate:latest`
-<br>
-`knex migrate:rollback`
-<br>
-<br>
-Run:
-`nodemon` to start server on port 3000 or change it in `/bin/www`
-<br>
-<br>
-Login page: `localhost:3000/users/login`
-<br>
-Register page: `localhost:3000/users/register`
-<br>
-Home/Index page: `localhost:3000/`
-<br>
-Admin page: `localhost:3000/admin`
+
+
+### Install dependencies:
+
+```
+npm install
+```
+
+### Run migrations:
+
+```
+knex migrate:latest
+knex migrate:rollback
+```
+
+
+### Run:
+```
+nodemon
+```
+to start server on port 3000 or change it in `/bin/www`
+
+
+
+Login page: `http://localhost:3000/users/login`
+
+Register page: `http://localhost:3000/users/register`
+
+Home/Index page: `http://localhost:3000/`
+
+Admin page: `http://localhost:3000/admin`
